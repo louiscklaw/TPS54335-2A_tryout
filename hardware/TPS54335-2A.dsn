@@ -351,9 +351,6 @@
     (net "Net-(C1-Pad2)"
       (pins U1-1 C1-2)
     )
-    (net "Net-(C1-Pad1)"
-      (pins U1-3 L1-1 C1-1)
-    )
     (net GND
       (pins C3-2 U1-PAD U1-PAD@1 U1-PAD@2 U1-PAD@3 U1-PAD@4 U1-PAD@5 U1-PAD@6 U1-4
         R7-2 R6-2 R5-2 J1-3 C7-2 C6-2 C5-2 C4-2 C2-2)
@@ -382,9 +379,11 @@
     (net "Net-(R6-Pad1)"
       (pins U1-8 R6-1)
     )
-    (class kicad_default "" +12V +5V /Vsense GND "Net-(C1-Pad1)" "Net-(C1-Pad2)"
-      "Net-(C6-Pad1)" "Net-(C7-Pad1)" "Net-(R1-Pad2)" "Net-(R2-Pad2)" "Net-(R6-Pad1)"
-      "Net-(U1-Pad2)"
+    (net /PH_NET
+      (pins U1-3 L1-1 C1-1)
+    )
+    (class kicad_default "" /Vsense "Net-(C1-Pad1)" "Net-(C1-Pad2)" "Net-(C6-Pad1)"
+      "Net-(C7-Pad1)" "Net-(R1-Pad2)" "Net-(R2-Pad2)" "Net-(R6-Pad1)"
       (circuit
         (use_via Via[0-1]_800:400_um)
       )
@@ -393,7 +392,42 @@
         (clearance 200.1)
       )
     )
+    (class 1A +12V
+      (circuit
+        (use_via Via[0-1]_800:400_um)
+      )
+      (rule
+        (width 750)
+        (clearance 200.1)
+      )
+    )
+    (class 3A +5V /PH_NET
+      (circuit
+        (use_via Via[0-1]_800:400_um)
+      )
+      (rule
+        (width 1250)
+        (clearance 500.1)
+      )
+    )
+    (class GND GND
+      (circuit
+        (use_via Via[0-1]_800:400_um)
+      )
+      (rule
+        (width 1500)
+        (clearance 200.1)
+      )
+    )
   )
   (wiring
+    (wire (path F.Cu 500  10600 -25740  11840 -25740)(net GND)(type protect))
+    (wire (path F.Cu 500  18525 -26905  16705 -26905)(net GND)(type protect))
+    (wire (path F.Cu 500  10600 -23200  9400 -23200)(net +12V)(type protect))
+    (wire (path F.Cu 500  17040 -24365  16705 -24700)(net +12V)(type protect))
+    (wire (path F.Cu 500  18525 -24365  17040 -24365)(net +12V)(type protect))
+    (wire (path F.Cu 500  10600 -24470  11630 -24470)(net +5V)(type protect))
+    (wire (path F.Cu 500  17119.2 -25700  16200 -25700)(net /PH_NET)(type protect))
+    (wire (path F.Cu 500  18525 -25635  17184.2 -25635  17119.2 -25700)(net /PH_NET)(type protect))
   )
 )
